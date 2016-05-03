@@ -19,8 +19,19 @@ function STORE_TTL(config){
     return;
   }
   this._store = {};
+  this.config = config;
+  this.config.namespace = config.namespace || 'store-ttl';
 }
-STORE_TTL.prototype.save = function(){
+STORE_TTL.prototype.save = this.config.save || function(key,data,ttl,callback){
+
+}
+STORE_TTL.prototype.get = this.config.get || function(key,callback){
+
+}
+STORE_TTL.prototype.remove = this.config.remove || function(key,callback){
+
+}
+STORE_TTL.prototype._clearTimeout = function(){
 
 }
 module.exports = STORE_TTL;
