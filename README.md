@@ -33,7 +33,7 @@ var storeInstance = new STORE({
     })    
   },
   ttl:60, //the unit is second,defualt one day.
-  getNameSpace:'test-store-ttl' //default:store-ttl-
+  namespace:'test-store-ttl' //default:store-ttl-
 });
 storeInstance.set('test-redis','ok',10,function(err,data){
   console.log(err,data);

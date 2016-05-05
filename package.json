@@ -1,6 +1,6 @@
 {
   "name": "store-ttl",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "a simple key value store that support ttl, and you can custom setter,getter,remove function such as redis.",
   "main": "index.js",
   "scripts":{
