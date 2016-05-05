@@ -1,0 +1,36 @@
+{
+  "name": "store-ttl",
+  "version": "0.0.1",
+  "description": "a simple key value store that support ttl, and you can custom setter,getter,remove function such as redis.",
+  "main": "index.js",
+  "scripts":{
+    "test":"mocha --recursive test/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/navyxie/store-ttl.git"
+  },
+  "keywords": [
+    "store",
+    "ttl",
+    "redis",
+    "memory",
+    "cache",
+    "expired"
+  ],
+  "devDependencies": {
+    "mocha": "^2.2.5",
+    "should": "^7.0.2"
+  },
+  "author": {
+    "name": "navyxie"
+  },
+  "license": "ISC",
+  "homepage": "https://github.com/navyxie/store-ttl",
+  "maintainers": [
+    {
+      "name": "navyxie",
+      "email": "navyxie2010@gmail.com"
+    }
+  ]
+}
