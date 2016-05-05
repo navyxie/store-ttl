@@ -49,11 +49,11 @@ setTimeout(function(){
 
 ## API
 
-[`set`](#set)
+- [`set`](#set)
 
-[`get`](#get)
+- [`get`](#get)
 
-[`remove`](#remove)
+- [`remove`](#remove)
 
 <a name="set" />
 
