@@ -32,7 +32,8 @@ var storeInstance = new STORE({
       callback(err);
     })    
   },
-  ttl:60 //the unit is second,defualt one day.
+  ttl:60, //the unit is second,defualt one day.
+  getNameSpace:'test-store-ttl' //default:store-ttl-
 });
 storeInstance.set('test-redis','ok',10,function(err,data){
   console.log(err,data);
@@ -49,11 +50,13 @@ setTimeout(function(){
 
 ## API
 
-[`set`](#set)
+- [`set`](#set)
 
-[`get`](#get)
+- [`get`](#get)
 
-[`remove`](#remove)
+- [`remove`](#remove)
+
+- [`getNameSpace`](#getNameSpace)
 
 <a name="set" />
 
@@ -84,3 +87,12 @@ storeInstance.remove('test-redis',function(err,data){
   console.log(err);
 })
 ```
+
+<a name="getNameSpace" />
+
+getNameSpace
+
+```js
+console.log(storeInstance.getNameSpace());//test-store-ttl
+```
+
