@@ -49,6 +49,25 @@ describe('#store#',function(){
       },1001);
     });
   });
+  describe('data in memory sync',function(){
+    var instance;
+    before(function(){
+      instance = new store()
+    })
+    it('get()',function(done){
+      done(instance.get('withdraw-3'));
+    });
+    it('set()',function(done){
+      instance.set('withdraw-3',1);
+      console.log(instance.get('withdraw-3'));
+      instance.get('withdraw-3').should.be.ok();
+      done();
+    });
+    it('remove()',function(done){
+      instance.remove('withdraw-3');
+      done(instance.get('withdraw-3'))
+    });
+  });
   describe('data in memory database',function(){
     var instance;
     var _store = {};
