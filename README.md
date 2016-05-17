@@ -54,6 +54,8 @@ setTimeout(function(){
 
 - [`get`](#get)
 
+- [`update`](#update)
+
 - [`remove`](#remove)
 
 - [`getNameSpace`](#getNameSpace)
@@ -78,6 +80,16 @@ storeInstance.get('test-redis',function(err,data){
 })
 ```
 
+<a name="update" />
+
+update
+
+```js
+storeInstance.update('test-redis','update-ok',function(err,data){
+  console.log(err,data);
+})
+```
+
 <a name="remove" />
 
 remove
@@ -96,3 +108,10 @@ getNameSpace
 console.log(storeInstance.getNameSpace());//test-store-ttl
 ```
 
+
+version:
+
+- 2.x.x 
+ 1. api return json : {data:orignData,ttl:ttl,expire:expire}.
+ 2. add update api.
+- 1.x.x api return origin data
