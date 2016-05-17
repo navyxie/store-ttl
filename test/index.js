@@ -9,6 +9,8 @@ describe('#store#',function(){
     });
     it('set()',function(done){
       instance.set('withdraw-1',1,function(err,data){
+        data.data.should.be.equal(1);
+        data.ttl.should.be.equal(86400);
         done(err);
       })
     });
@@ -31,12 +33,25 @@ describe('#store#',function(){
     });
     it('set()',function(done){
       instance.set('withdraw-2',1,1,function(err,data){
+        data.data.should.be.equal(1);
+        data.ttl.should.be.equal(1);
         done(err);
       })
     });
     it('get()',function(done){
       instance.get('withdraw-2',function(err,data){
+        data.data.should.be.equal(1);
+        data.ttl.should.be.equal(1);
         should.exists(data);
+        setTimeout(function(){
+          done(err);
+        },500);     
+      })
+    });
+    it('update()',function(done){
+      instance.update('withdraw-2',2,function(err,data){
+        data.data.should.be.equal(2);
+        data.expire.should.be.above(Date.now()+500);
         done(err);
       })
     });
@@ -48,6 +63,12 @@ describe('#store#',function(){
         })
       },1001);
     });
+    it('update()',function(done){
+      instance.update('withdraw-2',2,function(err,data){
+        should.not.exists(data);
+        done(err);
+      })
+    })
   });
   describe('data in memory sync',function(){
     var instance;
@@ -59,7 +80,6 @@ describe('#store#',function(){
     });
     it('set()',function(done){
       instance.set('withdraw-3',1);
-      console.log(instance.get('withdraw-3'));
       instance.get('withdraw-3').should.be.ok();
       done();
     });
@@ -120,6 +140,15 @@ describe('#store#',function(){
     it('get()',function(done){
       instance.get('withdraw-4',function(err,data){
         should.exists(data);
+        setTimeout(function(){
+          done(err);
+        },500);
+      })
+    });
+    it('update()',function(done){
+      instance.update('withdraw-4',2,function(err,data){
+        data.data.should.be.equal(2);
+        data.expire.should.be.above(Date.now()+500);
         done(err);
       })
     });
@@ -136,6 +165,12 @@ describe('#store#',function(){
         should.not.exists(data);
         done(err);
       })
+    });
+    it('update()',function(done){
+      instance.update('withdraw-4',2,function(err,data){
+        should.not.exists(data);
+        done(err);
+      });
     });
   })
 })
