@@ -117,7 +117,9 @@ npm test
 
 version:
 
+- 3.x.x
+  1. support redis client set object 
 - 2.x.x 
- 1. api return json : {data:orignData,ttl:ttl,expire:expire}.
- 2. add update api.
+  1. api return json : {data:orignData,ttl:ttl,expire:expire}.
+  2. add update api.
 - 1.x.x api return origin data
