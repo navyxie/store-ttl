@@ -1,10 +1,10 @@
 {
   "name": "store-ttl",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "a simple key value store that support ttl, and you can custom setter,getter,remove function such as redis.",
   "main": "index.js",
   "scripts":{
-    "test":"mocha --recursive test/"
+    "test":"npm install && mocha --recursive test/"
   },
   "repository": {
     "type": "git",
@@ -20,7 +20,8 @@
   ],
   "devDependencies": {
     "mocha": "^2.2.5",
-    "should": "^7.0.2"
+    "should": "^7.0.2",
+    "redis": "^2.4.2"
   },
   "author": {
     "name": "navyxie"
