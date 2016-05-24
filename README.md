@@ -32,6 +32,7 @@ var storeInstance = new STORE({
     }); 
   },
   ttl:60, //the unit is second,defualt one day.
+  ttlUnit:true, //if true ttl is milliseconds but second
   namespace:'test-store-ttl' //default:store-ttl-
 });
 storeInstance.set('test-redis','ok',10,function(err,data){
