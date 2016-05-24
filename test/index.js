@@ -10,7 +10,7 @@ describe('#store#',function(){
     it('set()',function(done){
       instance.set('withdraw-1',1,function(err,data){
         data.data.should.be.equal(1);
-        data.ttl.should.be.equal(86400);
+        data.ttl.should.be.equal(86400000);
         done(err);
       })
     });
@@ -34,14 +34,14 @@ describe('#store#',function(){
     it('set()',function(done){
       instance.set('withdraw-2',1,1,function(err,data){
         data.data.should.be.equal(1);
-        data.ttl.should.be.equal(1);
+        data.ttl.should.be.equal(1000);
         done(err);
       })
     });
     it('get()',function(done){
       instance.get('withdraw-2',function(err,data){
         data.data.should.be.equal(1);
-        data.ttl.should.be.equal(1);
+        data.ttl.should.be.equal(1000);
         should.exists(data);
         setTimeout(function(){
           done(err);
