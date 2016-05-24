@@ -17,20 +17,19 @@ var redis = require("redis"),
 var STORE = require('store-ttl');
 var storeInstance = new STORE({
   set:function(key,data,ttl,callback){
-    client.set(key,data,function(err,reply){
-      callback(err,reply.toString());
+    client.SETEX(key,ttl,data,function(err,reply){
+      callback(err,reply);
     });
-    client.expire(key,ttl);
   },
   get:function(key,callback){
-    client.get(key,function(err,reply){
-      callback(err,reply.toString());
+    client.GET(key,function(err,reply){
+      callback(err,reply);
     });
   },
   remove:function(key,callback){
-    client.del(key,function(err){
-      callback(err);
-    })    
+    client.DEL(key,function(err,data){
+      callback(err,data);
+    }); 
   },
   ttl:60, //the unit is second,defualt one day.
   namespace:'test-store-ttl' //default:store-ttl-
@@ -109,9 +108,18 @@ console.log(storeInstance.getNameSpace());//test-store-ttl
 ```
 
 
+## test
+
+```js
+npm test
+```
+
+
 version:
 
+- 3.x.x
+  1. support redis client set object 
 - 2.x.x 
- 1. api return json : {data:orignData,ttl:ttl,expire:expire}.
- 2. add update api.
+  1. api return json : {data:orignData,ttl:ttl,expire:expire}.
+  2. add update api.
 - 1.x.x api return origin data

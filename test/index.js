@@ -172,5 +172,102 @@ describe('#store#',function(){
         done(err);
       });
     });
-  })
+  });
+  describe('data in redis',function(){
+    var instance;
+    var redis = require("redis"),
+      client = redis.createClient(6379,'localhost');
+    before(function(){
+      instance = new store({
+        set:function(key,data,ttl,callback){
+          client.SETEX(key,ttl,data,function(err,reply){
+              callback(err,reply);
+          });
+        },
+        get:function(key,callback){
+          client.GET(key,function(err,reply){
+            callback(err,reply);
+          });
+        },
+        remove:function(key,callback){
+          client.DEL(key,function(err,data){
+            callback(err,data);
+          });
+        }
+      })
+    })
+    it('get()',function(done){
+      instance.get('withdraw-5',function(err,data){
+        should.not.exists(data);
+        done(err);
+      })
+    });
+    it('set()',function(done){
+      instance.set('withdraw-5',1,function(err,data){
+        should.exists(data);
+        done(err);
+      })
+    });
+    it('get()',function(done){
+      instance.get('withdraw-5',function(err,data){
+        should.exists(data);
+        done(err);
+      })
+    });
+    it('remove()',function(done){
+      instance.remove('withdraw-5',function(err,data){
+        should.exists(data);
+        done(err);
+      })
+    });
+    it('set()',function(done){
+      instance.set('withdraw-6',1,1,function(err,data){
+        should.exists(data);
+        done(err);
+      })
+    });
+    it('get()',function(done){
+      instance.get('withdraw-6',function(err,data){
+        should.exists(data);
+        setTimeout(function(){
+          done(err);
+        },500);
+      })
+    });
+    it('update()',function(done){
+      instance.update('withdraw-6',2,function(err,data){
+        data.data.should.be.equal(2);
+        data.expire.should.be.above(Date.now()+500);
+        done(err);
+      })
+    });
+    it('get()',function(done){
+      setTimeout(function(){
+        instance.get('withdraw-6',function(err,data){
+          should.not.exists(data);
+          done(err);
+        })
+      },1003);
+    });
+    it('remove()',function(done){
+      instance.remove('withdraw-6',function(err,data){
+        data.should.be.equal(0);
+        done(err);
+      })
+    });
+    it('update()',function(done){
+      instance.update('withdraw-6',2,function(err,data){
+        should.not.exists(data);
+        done(err);
+      });
+    });
+    after(function(){
+      instance.remove('withdraw-5',function(err){
+
+      });
+      instance.remove('withdraw-6',function(err){
+
+      });
+    })
+  });
 })
