@@ -112,7 +112,24 @@ console.log(storeInstance.getNameSpace());//test-store-ttl
 ## test
 
 ```js
+//test
 npm test
+
+//coverage
+
+npm run cov
+
+```
+
+## code coverage
+
+```
+=============================== Coverage summary ===============================
+Statements   : 98.2% ( 109/111 )
+Branches     : 84% ( 42/50 )
+Functions    : 96.15% ( 25/26 )
+Lines        : 98.2% ( 109/111 )
+================================================================================
 ```
 
 
