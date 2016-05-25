@@ -51,7 +51,7 @@ describe('#store#',function(){
     it('update()',function(done){
       instance.update('withdraw-2',2,function(err,data){
         data.data.should.be.equal(2);
-        data.expire.should.be.above(Date.now()+500);
+        data.expire.should.be.below(Date.now()+500);
         done(err);
       })
     });
@@ -65,8 +65,8 @@ describe('#store#',function(){
     });
     it('update()',function(done){
       instance.update('withdraw-2',2,function(err,data){
-        should.not.exists(data);
-        done(err);
+        should.exists(err);
+        done();
       })
     })
   });
@@ -148,7 +148,7 @@ describe('#store#',function(){
     it('update()',function(done){
       instance.update('withdraw-4',2,function(err,data){
         data.data.should.be.equal(2);
-        data.expire.should.be.above(Date.now()+500);
+        data.expire.should.be.below(Date.now()+500);
         done(err);
       })
     });
@@ -168,8 +168,8 @@ describe('#store#',function(){
     });
     it('update()',function(done){
       instance.update('withdraw-4',2,function(err,data){
-        should.not.exists(data);
-        done(err);
+        should.exists(err);
+        done();
       });
     });
   });
@@ -180,7 +180,7 @@ describe('#store#',function(){
     before(function(){
       instance = new store({
         set:function(key,data,ttl,callback){
-          client.SETEX(key,ttl,data,function(err,reply){
+          client.PSETEX(key,ttl,data,function(err,reply){
               callback(err,reply);
           });
         },
@@ -237,7 +237,7 @@ describe('#store#',function(){
     it('update()',function(done){
       instance.update('withdraw-6',2,function(err,data){
         data.data.should.be.equal(2);
-        data.expire.should.be.above(Date.now()+500);
+        data.expire.should.be.below(Date.now()+500);
         done(err);
       })
     });
@@ -257,8 +257,8 @@ describe('#store#',function(){
     });
     it('update()',function(done){
       instance.update('withdraw-6',2,function(err,data){
-        should.not.exists(data);
-        done(err);
+        should.exists(err);
+        done();
       });
     });
     after(function(){
