@@ -1,5 +1,7 @@
 language: node_js
 
+repo_token: DDqDAgLgjADJ13fNOv57t8JWzLvua8kfM
+
 node_js:  
 
   - 0.10.35
@@ -8,3 +10,5 @@ services:
   - redis
 
 script: npm test
+
+after_script: npm run cov
