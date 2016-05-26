@@ -1,4 +1,4 @@
-a simple key value store that support ttl, and you can custom setter,getter,remove function such as redis.
+a simple key value store that support ttl,and you can custom setter,getter,remove function such as redis.
 
 [![Build Status via Travis CI](https://travis-ci.org/navyxie/store-ttl.svg?branch=master)](https://travis-ci.org/navyxie/store-ttl) [![Coverage Status](https://coveralls.io/repos/github/navyxie/store-ttl/badge.svg?branch=master)](https://coveralls.io/github/navyxie/store-ttl?branch=master)
 
