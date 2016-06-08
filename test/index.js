@@ -270,4 +270,39 @@ describe('#store#',function(){
       });
     })
   });
+  describe('auto clean timeout data',function(){
+    var instance;
+    var _store = {};
+    before(function(){
+      instance = new store({
+        autoClean:true,
+        cleanTimeoutSecond:1
+      })
+    })
+    it('set()',function(done){
+      instance.set('withdraw-8',1,3,function(err,data){
+        data.data.should.be.equal(1);
+        data.ttl.should.be.equal(3000);
+        done(err);
+      })
+    });
+    it('get()',function(done){
+      instance.get('withdraw-8',function(err,data){
+        should.exists(data);
+        done(err);
+      })
+    });
+    it('timeout() data not clean',function(done){
+      setTimeout(function() {
+        should.exists(instance._store['store-ttl-withdraw-8']);
+        done(null);
+      }, 1000);
+    });
+    it('timeout() data haved clean',function(done){
+      setTimeout(function() {
+        should.not.exists(instance._store['store-ttl-withdraw-8']);
+        done(null);
+      }, 2500);
+    });
+  })
 })
