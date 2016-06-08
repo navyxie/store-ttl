@@ -35,7 +35,9 @@ var storeInstance = new STORE({
   },
   ttl:60, //the unit is second,defualt one day.
   ttlUnit:true, //if true ttl is milliseconds but second
-  namespace:'test-store-ttl' //default:store-ttl-
+  namespace:'test-store-ttl', //default:store-ttl-
+  autoClean: false, //default to false, just valid when not custom set, get ,remove function.
+  cleanTimeoutSecond: 300 //default to 5 minutes, when autoClean is true.
 });
 storeInstance.set('test-redis','ok',10,function(err,data){
   console.log(err,data);
